@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/phenixcoder/create-lcs/compare/v1.0.0...v1.1.0) (2025-05-28)
+
+
+### Features
+
+* add dry-run mode to project creation process for safer execution ([15745ac](https://github.com/phenixcoder/create-lcs/commit/15745ac1b1f881c57c7fb0f69d94b1aa6d5934b9))
+* move fs-extra and prompts to dependencies section in package.json ([39a01df](https://github.com/phenixcoder/create-lcs/commit/39a01dfabbce21e9c14f0fe0999560350560f7ea))
+* move fs-extra and prompts to dependencies section in pnpm-lock.yaml ([ffc7b38](https://github.com/phenixcoder/create-lcs/commit/ffc7b384f12cfbfcc259e005758454e68c12755a))
+
 # 1.0.0 (2025-05-28)
 
 

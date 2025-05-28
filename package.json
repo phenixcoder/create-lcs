@@ -5,7 +5,12 @@
   "main": "index.js",
   "bin": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p tsconfig.json",
+    "prepublishOnly": "pnpm run build",
+    "release": "semantic-release",
+    "release:dry-run": "semantic-release --dry-run",
+    "release:force": "semantic-release --force"
   },
   "keywords": [],
   "author": "",

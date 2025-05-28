@@ -11,6 +11,8 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # Grant write permissions for Semantic Release to push tags and commits
 
     steps:
       - name: Checkout

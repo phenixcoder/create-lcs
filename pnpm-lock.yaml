@@ -7,6 +7,13 @@ settings:
 importers:
 
   .:
+    dependencies:
+      fs-extra:
+        specifier: ^11.3.0
+        version: 11.3.0
+      prompts:
+        specifier: ^2.4.2
+        version: 2.4.2
     devDependencies:
       '@semantic-release/changelog':
         specifier: ^6.0.3
@@ -35,12 +42,6 @@ importers:
       cz-conventional-changelog:
         specifier: ^3.3.0
         version: 3.3.0(@types/node@22.15.23)(typescript@5.8.3)
-      fs-extra:
-        specifier: ^11.3.0
-        version: 11.3.0
-      prompts:
-        specifier: ^2.4.2
-        version: 2.4.2
       semantic-release:
         specifier: ^24.2.5
         version: 24.2.5(typescript@5.8.3)

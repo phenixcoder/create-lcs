@@ -15,6 +15,16 @@ const run = async () => {
 
   const questions: prompts.PromptObject[] = [
     {
+      type: 'select',
+      name: 'template',
+      message: 'Which template would you like to use?',
+      choices: [
+        { title: 'phenixcoder/lambda-container-service', value: 'https://github.com/phenixcoder/lambda-container-service.git' },
+        { title: 'phenixcoder/lambda-container-service-nest', value: 'https://github.com/phenixcoder/lambda-container-service-nest.git' },
+      ],
+      initial: 0,
+    },
+    {
       type: 'text',
       name: 'projectDir',
       message: 'Where would you like to create your lambda-container-service project?',
@@ -64,6 +74,7 @@ const run = async () => {
   const awsRoleArn = response.awsRoleArn;
   const hasEcrDetails = response.hasEcrDetails;
   const ecrRepoName = response.ecrRepoName;
+  const templateRepoUrl = response.template; // Use the selected template URL
 
   console.log('\nCreating project with the following details:');
   console.log(`Project Directory: ${projectDir}`);
@@ -94,8 +105,7 @@ const run = async () => {
     return;
   }
 
-  const templateRepoUrl = 'https://github.com/phenixcoder/lambda-container-service.git';
-  const tempDir = path.join(__dirname, '..', 'temp-template'); // Corrected path joining
+  const tempDir = path.join(__dirname, '..', 'temp-template');
   const projectPath = path.join(process.cwd(), projectDir);
 
   try {

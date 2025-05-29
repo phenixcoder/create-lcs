@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/phenixcoder/create-lcs/compare/v1.1.0...v1.2.0) (2025-05-29)
+
+
+### Features
+
+* add template selection to project creation process ([28ae236](https://github.com/phenixcoder/create-lcs/commit/28ae2361975405749c03e9d48f9d0df34ca488db))
+
 # [1.1.0](https://github.com/phenixcoder/create-lcs/compare/v1.0.0...v1.1.0) (2025-05-28)
 
 

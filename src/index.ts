@@ -147,15 +147,20 @@ const run = async () => {
       console.log(`Dry run: Would create project directory ${projectPath}`);
     }
 
-    // Define files/directories to copy (adjust as needed)
-    const filesToCopy = [
-      'Dockerfile',
-      'package.json',
-      '.github/workflows',
-      'src', // Assuming source code is in src
-      'README.md',
-      // Add other config files as needed
-    ];
+    // Copy everything from the template directory to the project directory. Just ignote node_modules and .git directories and files have .example suffix or TEMPLATE_ prefix.
+    const filesToCopy = await fs.readdir(tempDir);
+    // Filter out files and directories that should not be copied
+    const filteredFiles = filesToCopy.filter(file => {
+      const filePath = path.join(tempDir, file);
+      return !file.startsWith('node_modules') &&
+             !file.startsWith('.git') &&
+             !file.startsWith('dist') &&
+             !file.startsWith('.vscode') &&
+             !file.endsWith('.example') &&
+             !file.startsWith('TEMPLATE_') &&
+             !file.startsWith('README.md') && // Exclude README.md to avoid conflicts
+             !file.startsWith('todo.md'); // Exclude todo.md to avoid conflicts
+    });
 
     for (const file of filesToCopy) {
       const sourcePath = path.join(tempDir, file);

@@ -177,6 +177,38 @@ const run = async () => {
       }
     }
 
+    // Handle existing README.md and todo.md files from template
+    console.log('Checking for existing README.md and todo.md files from template...');
+    const templateReadmePath = path.join(tempDir, 'README.md');
+    const templateTodoPath = path.join(tempDir, 'todo.md');
+    const projectReadmePath = path.join(projectPath, 'README.md');
+    const projectTodoPath = path.join(projectPath, 'todo.md');
+    
+    let hasOriginalReadme = false;
+    let hasOriginalTodo = false;
+
+    if (await fs.exists(templateReadmePath)) {
+      if (!isDryRun) {
+        await fs.copy(templateReadmePath, path.join(projectPath, 'ORIGINAL_README.md'));
+        hasOriginalReadme = true;
+        console.log('Renamed template README.md to ORIGINAL_README.md');
+      } else {
+        console.log('Dry run: Would rename template README.md to ORIGINAL_README.md');
+        hasOriginalReadme = true;
+      }
+    }
+
+    if (await fs.exists(templateTodoPath)) {
+      if (!isDryRun) {
+        await fs.copy(templateTodoPath, path.join(projectPath, 'ORIGINAL_todo.md'));
+        hasOriginalTodo = true;
+        console.log('Renamed template todo.md to ORIGINAL_todo.md');
+      } else {
+        console.log('Dry run: Would rename template todo.md to ORIGINAL_todo.md');
+        hasOriginalTodo = true;
+      }
+    }
+
     console.log('Modifying package.json...');
     const packageJsonPath = path.join(projectPath, 'package.json');
     if (await fs.exists(packageJsonPath)) {
@@ -239,13 +271,18 @@ const run = async () => {
     // Examples: Dockerfile (if needed), service-specific config files, IaC files.
     console.log('Finished modifying other configuration files (placeholder).');
 
-    if (!hasAwsCredentials || !hasEcrDetails) {
+    if (!hasAwsCredentials || !hasEcrDetails || hasOriginalTodo) {
       if (!isDryRun) {
         const todoContent: string[] = [];
         todoContent.push('# To-Do List for Your New Lambda Container Service Project');
         todoContent.push('');
         todoContent.push('This file outlines the steps you need to take to complete the setup of your project.');
         todoContent.push('');
+
+        if (hasOriginalTodo) {
+          todoContent.push('> **Note:** The original todo.md from the template has been preserved as [ORIGINAL_todo.md](./ORIGINAL_todo.md). You may want to review it for template-specific instructions.');
+          todoContent.push('');
+        }
 
         if (!hasAwsCredentials) {
           todoContent.push('## Configure AWS Credentials for GitHub Actions');
@@ -270,6 +307,16 @@ const run = async () => {
           todoContent.push('');
         }
 
+        // If we only have an original todo and no missing credentials, add a note about project completion
+        if (hasOriginalTodo && hasAwsCredentials && hasEcrDetails) {
+          todoContent.push('## Project Setup Complete');
+          todoContent.push('');
+          todoContent.push('All required AWS credentials and ECR details have been configured. Your project should be ready to deploy!');
+          todoContent.push('');
+          todoContent.push('Please review the original template todo.md file (linked above) for any template-specific setup steps that may still be required.');
+          todoContent.push('');
+        }
+
         const todoFilePath = path.join(projectPath, 'todo.md');
         await fs.writeFile(todoFilePath, todoContent.join('\n'), 'utf8');
         console.log('Created todo.md with instructions.');
@@ -285,6 +332,12 @@ const run = async () => {
       readmeContent.push('');
       readmeContent.push('This is your new Lambda Container Service project.');
       readmeContent.push('');
+
+      if (hasOriginalReadme) {
+        readmeContent.push('> **Note:** The original README.md from the template has been preserved as [ORIGINAL_README.md](./ORIGINAL_README.md). You may want to review it for template-specific information and instructions.');
+        readmeContent.push('');
+      }
+
       readmeContent.push('## AWS Setup');
       readmeContent.push('');
       if (hasAwsCredentials) {

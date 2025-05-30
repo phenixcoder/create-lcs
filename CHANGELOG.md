@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/phenixcoder/create-lcs/compare/v1.3.0...v1.4.0) (2025-05-30)
+
+
+### Features
+
+* preserve original README.md and todo.md files from template during project creation ([1c7f639](https://github.com/phenixcoder/create-lcs/commit/1c7f639da9dc328e2b7203393bd83efb468b7b21))
+
 # [1.3.0](https://github.com/phenixcoder/create-lcs/compare/v1.2.0...v1.3.0) (2025-05-30)
 
 

@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/phenixcoder/create-lcs/compare/v1.2.0...v1.3.0) (2025-05-30)
+
+
+### Features
+
+* enhance project creation by filtering files to copy from template directory ([37e3ed5](https://github.com/phenixcoder/create-lcs/commit/37e3ed5ae3a83092c1b62ad2d4be070edc753490))
+
 # [1.2.0](https://github.com/phenixcoder/create-lcs/compare/v1.1.0...v1.2.0) (2025-05-29)
 
 

@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/phenixcoder/create-lcs/compare/v1.4.0...v1.5.0) (2025-05-30)
+
+
+### Features
+
+* implement JSON schema-based prompts and configuration handling for Lambda Container Service projects ([5e7b04f](https://github.com/phenixcoder/create-lcs/commit/5e7b04f2b21c308dce2f24a3911e0f0cda2c6989))
+
 # [1.4.0](https://github.com/phenixcoder/create-lcs/compare/v1.3.0...v1.4.0) (2025-05-30)
 
 
